@@ -1,0 +1,4 @@
+title: 663ger Wallet
+description: Custom Apple Wallet Pass for 663ger
+baseurl: ""
+include: [".htaccess"] 
