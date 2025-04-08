@@ -80,10 +80,29 @@
     <div class="copyright">© 2024 663ger</div>
 
     <script>
-        // Автоматически открывает файл pass при загрузке страницы на iOS устройствах
+        // Улучшенный скрипт для загрузки pass-файла на iOS устройствах
         document.addEventListener('DOMContentLoaded', function() {
             const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const addToWalletButton = document.querySelector('.button');
+            
             if (iOS) {
+                // Для iOS устройств меняем обработчик
+                addToWalletButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Создаем iframe для загрузки pkpass в фоновом режиме
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = '663ger.pkpass';
+                    document.body.appendChild(iframe);
+                    
+                    // В случае если iframe не сработал, пробуем открыть напрямую
+                    setTimeout(function() {
+                        window.location = '663ger.pkpass';
+                    }, 500);
+                });
+                
+                // Автоматически пробуем открыть pass при загрузке страницы
                 setTimeout(function() {
                     window.location = '663ger.pkpass';
                 }, 1000);
