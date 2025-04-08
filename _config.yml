@@ -1,4 +1,9 @@
 title: 663ger Wallet
 description: Custom Apple Wallet Pass for 663ger
 baseurl: ""
-include: [".htaccess"] 
+include: [".htaccess", ".well-known"]
+defaults:
+  - scope:
+      path: "*.pkpass"
+    values:
+      content_type: "application/vnd.apple.pkpass" 
